@@ -16,6 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { ArrowDown } from 'lucide-react';
+import AnimatedBackground from './animated-background';
 
 type ChartDataPoint = {
   k: number;
@@ -160,8 +161,9 @@ export default function ProbabilityExplorer() {
   return (
     <>
       <IntroAnimation />
-      <div className="min-h-screen w-full px-4 py-8 md:px-8 lg:py-12">
-        <div className="mx-auto max-w-7xl">
+      <AnimatedBackground />
+      <div className="min-h-screen w-full px-4 py-8 md:px-8 lg:py-12 relative z-10">
+        <div className="mx-auto max-w-7xl bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-lg">
             <header className="text-center mb-16 min-h-[80vh] flex flex-col justify-center items-center">
               <h1 className="font-serif text-5xl font-bold tracking-tight text-primary sm:text-6xl lg:text-7xl">
                 Probability Explorer
