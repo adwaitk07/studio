@@ -53,12 +53,12 @@ export default function ProbabilityChart({ data, distribution }: ProbabilityChar
       <CardContent>
         <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
           <ResponsiveContainer width="100%" height={400}>
-            <ComposedChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <ComposedChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="k" label={{ value: 'Number of Successes (k)', position: 'insideBottom', offset: -15 }} />
-              <YAxis label={{ value: 'Probability', angle: -90, position: 'insideLeft', offset: 10 }} />
+              <XAxis dataKey="k" label={{ value: 'Number of Successes (k)', position: 'insideBottom', offset: -25, style: { fontSize: '0.875rem' } }} tick={{ fontSize: '0.75rem' }} />
+              <YAxis label={{ value: 'Probability', angle: -90, position: 'insideLeft', offset: 10, style: { textAnchor: 'middle', fontSize: '0.875rem' } }} tick={{ fontSize: '0.75rem' }} />
               <Tooltip content={<ChartTooltipContent />} />
-              <Legend />
+              <Legend wrapperStyle={{paddingTop: '20px'}}/>
               <Bar dataKey="pmf" name="Theoretical PMF" fill="var(--color-pmf)" barSize={20} />
               <Bar dataKey="simulation" name="Simulation" fill="var(--color-simulation)" barSize={20} />
               {showApproximations && <Line type="monotone" dataKey="normal" name="Normal Approx." stroke="var(--color-normal)" strokeWidth={2} dot={false} />}

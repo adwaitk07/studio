@@ -163,7 +163,7 @@ export default function ProbabilityExplorer() {
       <div className="min-h-screen w-full px-4 py-8 md:px-8 lg:py-12">
         <div className="mx-auto max-w-7xl">
             <header className="text-center mb-16 min-h-[80vh] flex flex-col justify-center items-center">
-              <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
+              <h1 className="font-serif text-5xl font-bold tracking-tight text-primary sm:text-6xl lg:text-7xl">
                 Probability Explorer
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-foreground/80">
@@ -176,9 +176,32 @@ export default function ProbabilityExplorer() {
             </header>
 
             <div className="space-y-16">
+            <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-3xl text-primary">A Tale of Coins, Dice, and Data</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6 text-lg">
+                  <div>
+                    <h3 className="font-semibold text-2xl mb-2">The Gambling Scholar</h3>
+                    <p className="text-foreground/90">
+                      Our story begins in the 17th century with the brilliant Swiss mathematician, Jacob Bernoulli. He was fascinated by games of chance. While others saw just luck, Bernoulli saw patterns and mathematics. He spent nearly 20 years of his life studying probability, and his work, published after his death, laid the foundation for what we now know as the Bernoulli trial.
+                    </p>
+                     <p className="text-foreground/90 mt-2">
+                      <span className="font-semibold text-primary">A Fun Fact:</span> Jacob came from a family of gifted mathematicians, but also a very competitive one! The Bernoullis were known for their fierce rivalries, often posing challenges to one another and sometimes even stealing each other's ideas. Thankfully, Jacob's work on probability was uniquely his.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-2xl text-primary mb-2">From One Trial to Many</h3>
+                    <p className="text-foreground/90">
+                      The Bernoulli distribution is the simplest of all. It answers the question for a single event: will it be a success or a failure? Think of a single coin flip. But what if you flip that coin multiple times? This is where the Binomial distribution comes in, generalizing Bernoulli's idea to multiple trials. It allows us to calculate the probability of a specific number of successes in a set number of attempts.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-3xl">Understanding the Building Blocks</CardTitle>
+                  <CardTitle className="font-serif text-3xl">Understanding the Building Blocks</CardTitle>
                 </CardHeader>
                 <CardContent className="grid md:grid-cols-2 gap-8 text-lg">
                   <div>
@@ -198,7 +221,7 @@ export default function ProbabilityExplorer() {
 
               <Card>
                  <CardHeader>
-                  <CardTitle className="text-3xl">Why Are They Important?</CardTitle>
+                  <CardTitle className="font-serif text-3xl">Why Are They Important?</CardTitle>
                   <CardDescription className="text-lg">Real-world applications of these distributions.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid md:grid-cols-2 gap-8 text-lg">
