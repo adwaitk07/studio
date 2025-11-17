@@ -65,7 +65,23 @@
   }
   body {
     @apply bg-background text-foreground;
-    cursor: url('/sigma.svg') 16 16, auto;
+    background-image: url('/math-background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    scroll-behavior: smooth;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsla(var(--background), 0.8);
+    backdrop-filter: blur(4px);
+    z-index: -1;
   }
 }
 
