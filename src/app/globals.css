@@ -68,7 +68,7 @@
     background-image: url('https://storage.googleapis.com/aifirebase-773dc.appspot.com/images%2FODOCR-1719582215286-902951755.jpeg');
     background-attachment: fixed;
     background-size: cover;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 12h16"/><path d="M10 18l3.5-3.5-3.5-3.5"/><path d="M18 6l-3.5 3.5L18 13"/></svg>') 12 12, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4H4v2l8 8-8 8v2h16"/></svg>') 12 12, auto;
   }
 }
 
