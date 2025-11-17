@@ -68,27 +68,6 @@
     background-image: url('https://storage.googleapis.com/aifirebase-773dc.appspot.com/images%2FODOCR-1719582215286-902951755.jpeg');
     background-attachment: fixed;
     background-size: cover;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6L12 12L6 20H18"/></svg>') 12 12, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6l6 8-6 8h12"/></svg>') 12 12, auto;
   }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-  50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
-  100% { transform: translateY(0px) rotate(360deg); opacity: 0.7; }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.intro-overlay {
-  animation: fade-out 1s ease-out 3s forwards;
-}
-
-.math-symbol {
-  animation: float 8s ease-in-out infinite;
 }
