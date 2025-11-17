@@ -55,7 +55,7 @@ export default function ProbabilityChart({ data, distribution }: ProbabilityChar
           <ResponsiveContainer width="100%" height={400}>
             <ComposedChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="k" label={{ value: 'Number of Successes (k)', position: 'insideBottom', offset: -25, style: { fontSize: '0.875rem' } }} tick={{ fontSize: '0.75rem' }} />
+              <XAxis dataKey="k" label={{ value: 'Number of Successes (k)', position: 'insideBottom', offset: -25, style: { fontSize: '0.875rem' } }} tick={{ fontSize: '0.75rem' }} interval="preserveStartEnd" />
               <YAxis label={{ value: 'Probability', angle: -90, position: 'insideLeft', offset: -10, style: { textAnchor: 'middle', fontSize: '0.875rem' } }} tick={{ fontSize: '0.75rem' }} />
               <Tooltip content={<ChartTooltipContent />} />
               <Legend wrapperStyle={{paddingTop: '20px'}}/>
