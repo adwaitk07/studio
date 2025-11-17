@@ -1,3 +1,9 @@
+import ProbabilityExplorer from '@/components/probability-explorer';
+
 export default function Home() {
-  return <></>;
+  return (
+    <main>
+      <ProbabilityExplorer />
+    </main>
+  );
 }
