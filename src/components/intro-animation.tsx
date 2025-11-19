@@ -2,18 +2,17 @@
 
 import { useState, useEffect } from 'react';
 
-const symbols = ['Σ', '∫', '∂', 'ƒ', 'μ', 'π', '≈', '≥', '±', '√'];
+const symbols = ['Σ', '∫', '∂', 'ƒ', 'μ', 'π', '≈', '≥', '±', '√', 'α', 'β', 'γ', 'δ', '∞'];
 
-export default function IntroAnimation() {
-  const [show, setShow] = useState(true);
+type IntroAnimationProps = {
+  show: boolean;
+};
+
+export default function IntroAnimation({ show }: IntroAnimationProps) {
   const [rendered, setRendered] = useState(false);
 
   useEffect(() => {
     setRendered(true);
-    const timer = setTimeout(() => {
-      setShow(false);
-    }, 3000); // Animation duration + fade out start time
-    return () => clearTimeout(timer);
   }, []);
 
   if (!rendered) {
@@ -40,12 +39,31 @@ export default function IntroAnimation() {
           );
         })}
       </div>
-      <div className="absolute flex flex-col items-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tight">
+      <div className="absolute flex flex-col items-center animate-pulse">
+        <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tight font-serif">
           Probability Explorer
         </h1>
         <p className="text-lg text-foreground/80 mt-2">Loading interactive distributions...</p>
       </div>
+       <style jsx global>{`
+          .math-symbol {
+            animation-name: float;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+          }
+
+          @keyframes float {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-20px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
+          }
+      `}</style>
     </div>
   );
 }

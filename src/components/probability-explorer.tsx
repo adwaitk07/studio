@@ -28,6 +28,7 @@ type ChartDataPoint = {
 
 export default function ProbabilityExplorer() {
   const [isMounted, setIsMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [distribution, setDistribution] = useState('binomial');
   const [n, setN] = useState(10);
   const [p, setP] = useState(0.5);
@@ -43,6 +44,8 @@ export default function ProbabilityExplorer() {
 
   useEffect(() => {
     setIsMounted(true);
+    const introTimer = setTimeout(() => setShowIntro(false), 4000);
+    return () => clearTimeout(introTimer);
   }, []);
 
   const handleScrollToExplorer = () => {
@@ -156,14 +159,14 @@ export default function ProbabilityExplorer() {
     toast({ title: 'Export Successful', description: 'Your data has been downloaded.' });
   };
 
-  if (!isMounted) return <IntroAnimation />;
+  if (!isMounted) return <IntroAnimation show={true} />;
 
   return (
     <>
-      <IntroAnimation />
+      <IntroAnimation show={showIntro} />
       <AnimatedBackground />
-      <div className="min-h-screen w-full px-4 py-8 md:px-8 lg:py-12 relative z-10">
-        <div className="mx-auto max-w-7xl bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-lg">
+      <div className="min-h-screen w-full px-4 py-8 md:px-8 lg:py-12 relative z-10 transition-opacity duration-1000" style={{ opacity: showIntro ? 0 : 1 }}>
+        <div className="mx-auto max-w-7xl">
             <header className="text-center mb-16 min-h-[80vh] flex flex-col justify-center items-center">
               <h1 className="font-serif text-5xl font-bold tracking-tight text-primary sm:text-6xl lg:text-7xl">
                 Probability Explorer
@@ -177,8 +180,8 @@ export default function ProbabilityExplorer() {
               </Button>
             </header>
 
-            <div className="space-y-16">
-            <Card>
+            <div className="space-y-12 bg-card/80 backdrop-blur-sm rounded-2xl p-4 md:p-8">
+              <Card className="bg-transparent border-none shadow-none">
                 <CardHeader>
                   <CardTitle className="font-serif text-3xl text-primary">A Tale of Coins, Dice, and Data</CardTitle>
                 </CardHeader>
@@ -201,7 +204,7 @@ export default function ProbabilityExplorer() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-transparent border-none shadow-none">
                 <CardHeader>
                   <CardTitle className="font-serif text-3xl">Understanding the Building Blocks</CardTitle>
                 </CardHeader>
@@ -221,7 +224,7 @@ export default function ProbabilityExplorer() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-transparent border-none shadow-none">
                  <CardHeader>
                   <CardTitle className="font-serif text-3xl">Why Are They Important?</CardTitle>
                   <CardDescription className="text-lg">Real-world applications of these distributions.</CardDescription>
