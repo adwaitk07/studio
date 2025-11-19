@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useRef } from 'react';
+import Image from 'next/image';
 import IntroAnimation from './intro-animation';
 import ParameterControls from './parameter-controls';
 import ProbabilityChart from './probability-chart';
@@ -17,6 +18,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { ArrowDown } from 'lucide-react';
 import AnimatedBackground from './animated-background';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type ChartDataPoint = {
   k: number;
@@ -41,6 +43,8 @@ export default function ProbabilityExplorer() {
   const debouncedN = useDebounce(n, 300);
   const debouncedP = useDebounce(p, 300);
   const { toast } = useToast();
+  
+  const jacobBernoulliImage = PlaceHolderImages.find(img => img.id === 'jacob-bernoulli');
 
   useEffect(() => {
     setIsMounted(true);
@@ -68,8 +72,8 @@ export default function ProbabilityExplorer() {
   const theoreticalData = useMemo(() => {
     const data: ChartDataPoint[] = [];
     // Use the debounced values for heavy calculations
-    const currentN = debouncedN;
-    const currentP = debouncedP;
+    const currentN = n;
+    const currentP = p;
 
     if (distribution === 'bernoulli') {
       for (let k = 0; k <= 1; k++) {
@@ -90,11 +94,14 @@ export default function ProbabilityExplorer() {
       }
     }
     return data;
-  }, [debouncedN, debouncedP, distribution]);
+  }, [n, p, distribution]);
+  
+  const debouncedTheoreticalData = useDebounce(theoreticalData, 300);
+
 
   useEffect(() => {
-    setChartData(theoreticalData);
-  }, [theoreticalData]);
+    setChartData(debouncedTheoreticalData);
+  }, [debouncedTheoreticalData]);
   
   const handleRunSimulation = () => {
     setIsSimulating(true);
@@ -124,7 +131,7 @@ export default function ProbabilityExplorer() {
             }
         }
 
-        const simulatedData = theoreticalData.map(d => ({
+        const simulatedData = debouncedTheoreticalData.map(d => ({
             ...d,
             simulation: (outcomes[d.k] || 0) / simulationCount
         }));
@@ -191,14 +198,28 @@ export default function ProbabilityExplorer() {
                   <CardTitle className="font-serif text-3xl text-primary">A Tale of Coins, Dice, and Data</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6 text-lg">
-                  <div>
-                    <h3 className="font-semibold text-2xl mb-2">The Gambling Scholar</h3>
-                    <p className="text-foreground/90">
-                      Our story begins in the 17th century with the brilliant Swiss mathematician, Jacob Bernoulli. He was fascinated by games of chance. While others saw just luck, Bernoulli saw patterns and mathematics. He spent nearly 20 years of his life studying probability, and his work, published after his death, laid the foundation for what we now know as the Bernoulli trial.
-                    </p>
-                     <p className="text-foreground/90 mt-2">
-                      <span className="font-semibold text-primary">A Fun Fact:</span> Jacob came from a family of gifted mathematicians, but also a very competitive one! The Bernoullis were known for their fierce rivalries, often posing challenges to one another and sometimes even stealing each other's ideas. Thankfully, Jacob's work on probability was uniquely his.
-                    </p>
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    {jacobBernoulliImage && (
+                       <div className="w-full md:w-1/3 flex-shrink-0">
+                         <Image
+                           src={jacobBernoulliImage.imageUrl}
+                           alt={jacobBernoulliImage.description}
+                           width={400}
+                           height={500}
+                           className="rounded-lg shadow-lg object-cover"
+                           data-ai-hint={jacobBernoulliImage.imageHint}
+                         />
+                       </div>
+                    )}
+                    <div className="flex-grow">
+                      <h3 className="font-semibold text-2xl mb-2">The Gambling Scholar</h3>
+                      <p className="text-foreground/90">
+                        Our story begins in the 17th century with the brilliant Swiss mathematician, Jacob Bernoulli. He was fascinated by games of chance. While others saw just luck, Bernoulli saw patterns and mathematics. He spent nearly 20 years of his life studying probability, and his work, published after his death, laid the foundation for what we now know as the Bernoulli trial.
+                      </p>
+                       <p className="text-foreground/90 mt-2">
+                        <span className="font-semibold text-primary">A Fun Fact:</span> Jacob came from a family of gifted mathematicians, but also a very competitive one! The Bernoullis were known for their fierce rivalries, often posing challenges to one another and sometimes even stealing each other's ideas. Thankfully, Jacob's work on probability was uniquely his.
+                      </p>
+                    </div>
                   </div>
                   <div>
                     <h3 className="font-semibold text-2xl text-primary mb-2">From One Trial to Many</h3>
