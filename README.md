@@ -63,3 +63,6 @@ To get started, take a look at src/app/page.tsx.
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256'%3E%3Cpath fill='currentColor' d='M216 40v16H84.31l-6.22-8.3a.93.93 0 0 0-.16-.17L76.31 46h131.94A7.77 7.77 0 0 1 216 40ZM166.69 104h49.38v16H92.31l-9.37-12.49a.93.93 0 0 0-.16-.17L76.31 98h90.38ZM76.31 154h72.38l67.31.05V170h-51.31l-12.5-16.66a.93.93 0 0 0-.16-.17l-1.62-1.51H76.31ZM178.69 210H40v-16h44.31l6.22 8.3a.93.93 0 0 0 .16.17l1.62 1.53h119.94a7.77 7.77 0 0 0-7.75-8.2Z'%3E%3C/path%3E%3C/svg%3E"), auto;
   }
 }
+# go to where your project actually lives (change path if needed)
+cd /workspace/studio        # or cd ~/workspace/studio or cd /home/you/project
+ls                         # verify you see package.json, src/, firebase.json etc.
