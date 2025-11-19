@@ -38,8 +38,8 @@ export default function ProbabilityExplorer() {
   
   const explorerRef = useRef<HTMLDivElement>(null);
 
-  const debouncedN = useDebounce(n, 500);
-  const debouncedP = useDebounce(p, 500);
+  const debouncedN = useDebounce(n, 300);
+  const debouncedP = useDebounce(p, 300);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -55,6 +55,7 @@ export default function ProbabilityExplorer() {
   useEffect(() => {
     if (distribution === 'binomial') {
       const getSuggestion = async () => {
+        // Use the debounced values for the AI suggestion API call
         const suggestion = await suggestOptimalParameters({ n: debouncedN, p: debouncedP });
         setAiSuggestion(suggestion);
       };
@@ -66,26 +67,30 @@ export default function ProbabilityExplorer() {
   
   const theoreticalData = useMemo(() => {
     const data: ChartDataPoint[] = [];
+    // Use the debounced values for heavy calculations
+    const currentN = debouncedN;
+    const currentP = debouncedP;
+
     if (distribution === 'bernoulli') {
       for (let k = 0; k <= 1; k++) {
-        data.push({ k, pmf: bernoulliPmf(k, p) });
+        data.push({ k, pmf: bernoulliPmf(k, currentP) });
       }
     } else {
-      const lambda = n * p;
-      const mu = n * p;
-      const sigma = Math.sqrt(n * p * (1 - p));
+      const lambda = currentN * currentP;
+      const mu = currentN * currentP;
+      const sigma = Math.sqrt(currentN * currentP * (1 - currentP));
 
-      for (let k = 0; k <= n; k++) {
+      for (let k = 0; k <= currentN; k++) {
         data.push({
           k,
-          pmf: binomialPmf(k, n, p),
+          pmf: binomialPmf(k, currentN, currentP),
           normal: normalPdf(k, mu, sigma),
           poisson: poissonPmf(k, lambda),
         });
       }
     }
     return data;
-  }, [n, p, distribution]);
+  }, [debouncedN, debouncedP, distribution]);
 
   useEffect(() => {
     setChartData(theoreticalData);
